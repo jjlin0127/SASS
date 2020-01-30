@@ -1,0 +1,49 @@
+@import "./var";
+@mixin margin() {
+    margin: 20px;
+}
+
+//不帶值的函數寫法
+@mixin rect() {
+    width: 200px;
+    height: 40px;
+    background-color: rgb(18, 122, 170);
+}
+
+// 帶值的函數寫法
+@mixin rect($width, $height, $bgc) {
+    width: $width;
+    height: $height;
+    background-color: $bgc;
+}
+
+@mixin float_module($dir, $width:null) {
+    float: $dir;
+    width: $width;
+    // height: $width*.5;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: $bgc;
+    color: $color;
+    font-size: $fontSize;
+    h1 {
+        margin: 20px;
+        font-family: $fontFamily;
+        font-size: $fontSize*5;
+        color: blueviolet;
+        @include rect(400px, 100px, rgb(255, 255, 255));
+        @include float_module(left);
+        span {
+            font-size: $fontSize*3;
+            @include margin();
+        }
+    }
+    h2 {
+        margin: 20px;
+        font-size: $fontSize*2;
+        // @include rect();
+    }
+}
