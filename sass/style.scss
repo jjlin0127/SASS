@@ -12,6 +12,7 @@
 
 // 帶值的函數寫法
 @mixin rect($width, $height, $bgc) {
+    //@mixin rect($height, $bgc, $width:100px) {//有帶預設值時, 建議放最後面
     width: $width;
     height: $height;
     background-color: $bgc;
@@ -46,4 +47,47 @@ body {
         font-size: $fontSize*2;
         // @include rect();
     }
+}
+
+@mixin animation_module($value) {
+    -webkit-animation: $value;
+    // Safari 4+
+    -moz-animation: $value;
+    // Fx 5+
+    -o-animation: $value;
+    // Opera 12+
+    animation: $value;
+    // IE 10+, Fx 29+
+}
+
+// .bgimage{
+//     @include animation_module()
+// }
+.btn {
+    width: 100px;
+    padding: 8px;
+    text-align: center;
+    color: #fff;
+    background-color: rgb(0, 42, 255);
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+@mixin btn($width, $padding, $color, $bgc, $border:null, $border-r:null) {
+    width: $width;
+    padding: $padding;
+    text-align: center;
+    color: $color;
+    background-color: $bgc;
+    cursor: pointer;
+    border: $border;
+    border-radius: $border-r;
+    &:hover {
+        background-color: darken($bgc, 10);
+    }
+}
+
+.btn {
+    @include btn(100px, 8px, #fff, rgb(0, 42, 255));
 }
